@@ -1,7 +1,7 @@
 # Личный проект «Пиксель хантер» [![Build status][travis-image]][travis-url]
 
 * Студент: [Наталья Ёркина](https://up.htmlacademy.ru/ecmascript/2/user/50014).
-* Наставник: `o0`.
+* Наставник: [Игорь Алексеенко](https://htmlacademy.ru/profile/o0).
 
 ---
 
