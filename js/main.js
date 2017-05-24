@@ -1,61 +1,68 @@
-/** @type {Array<HTMLElement>} */
-const templates = Array.from(document.querySelectorAll(`template`));
-
-/** @type {HTMLElement} */
 const mainContainer = document.querySelector(`.central`);
 
-/** @type {HTMLElement} */
-const main = mainContainer.querySelector(`.central__content`);
-
-/** @const {string} */
 const ARROW_RIGHT_KEY_CODE = `ArrowRight`;
 
-/** @const {string} */
 const ARROW_LEFT_KEY_CODE = `ArrowLeft`;
 
-/** @type {number} */
-let listCounter = 0;
+const MIN_SCREEN_PAGE_NUMBER = 0;
 
+let currentActiveScreen = 0;
 
-const pasteTemplateToPage = () => {
-  const content = templates[listCounter].content;
+const templates = [
+  document.querySelector(`#greeting`),
+  document.querySelector(`#rules`),
+  document.querySelector(`#game-1`),
+  document.querySelector(`#game-2`),
+  document.querySelector(`#game-3`),
+  document.querySelector(`#stats`)
+].map((template) => template.content);
+
+const addFragment = () => {
+  const fragment = document.createDocumentFragment();
+  const newMain = mainContainer.cloneNode(true);
+  fragment.appendChild(newMain);
+  return fragment;
+};
+
+templates.unshift(addFragment());
+
+const pasteScreen = () => {
+  const content = templates[currentActiveScreen];
   const newNode = content.cloneNode(true);
   mainContainer.innerHTML = ``;
   mainContainer.appendChild(newNode);
 };
 
-const addTemplate = () => {
-  const extraTemplate = document.createElement(`template`);
-  extraTemplate.content.appendChild(main);
-  templates.unshift(extraTemplate);
-};
-addTemplate();
-pasteTemplateToPage();
-
-const increaseCounter = () => {
-  if (listCounter >= (templates.length - 1)) {
-    return;
-  }
-
-  listCounter++;
+const increase = (max, current) => {
+  return Math.min(max, current);
 };
 
-const decreaseCounter = () => {
-  if (listCounter === 0) {
-    return;
-  }
+const decrease = (min, current) => {
+  return Math.max(min, current);
+};
 
-  listCounter--;
+const pressRight = () => {
+  const currentScreen = ++currentActiveScreen;
+  currentActiveScreen = increase(templates.length - 1, currentScreen);
+  pasteScreen();
+};
+
+const pressLeft = () => {
+  const currentScreen = --currentActiveScreen;
+  currentActiveScreen = decrease(MIN_SCREEN_PAGE_NUMBER, currentScreen);
+  pasteScreen();
 };
 
 document.addEventListener(`keydown`, (evt) => {
-  if (evt.altKey && evt.key === ARROW_RIGHT_KEY_CODE) {
-    increaseCounter();
-    pasteTemplateToPage();
+  if (!evt.altKey) {
+    return;
   }
 
-  if (evt.altKey && evt.key === ARROW_LEFT_KEY_CODE) {
-    decreaseCounter();
-    pasteTemplateToPage();
+  if (evt.key === ARROW_RIGHT_KEY_CODE) {
+    pressRight();
+  }
+
+  if (evt.key === ARROW_LEFT_KEY_CODE) {
+    pressLeft();
   }
 });
