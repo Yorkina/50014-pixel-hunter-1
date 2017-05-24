@@ -14,23 +14,23 @@ const ARROW_RIGHT_KEY_CODE = `ArrowRight`;
 const ARROW_LEFT_KEY_CODE = `ArrowLeft`;
 
 /** @type {number} */
-let listCounter = -1;
+let listCounter = 0;
 
-const pasteTemplate = (template = main) => {
-  mainContainer.innerHTML = ``;
-  mainContainer.appendChild(template);
-};
 
-const createTemplate = () => {
-  if (listCounter < 0) {
-    pasteTemplate();
-    return;
-  }
-
+const pasteTemplateToPage = () => {
   const content = templates[listCounter].content;
   const newNode = content.cloneNode(true);
-  pasteTemplate(newNode);
+  mainContainer.innerHTML = ``;
+  mainContainer.appendChild(newNode);
 };
+
+const addTemplate = () => {
+  const extraTemplate = document.createElement(`template`);
+  extraTemplate.content.appendChild(main);
+  templates.unshift(extraTemplate);
+};
+addTemplate();
+pasteTemplateToPage();
 
 const increaseCounter = () => {
   if (listCounter >= (templates.length - 1)) {
@@ -41,7 +41,7 @@ const increaseCounter = () => {
 };
 
 const decreaseCounter = () => {
-  if (listCounter < 0) {
+  if (listCounter === 0) {
     return;
   }
 
@@ -51,11 +51,11 @@ const decreaseCounter = () => {
 document.addEventListener(`keydown`, (evt) => {
   if (evt.altKey && evt.key === ARROW_RIGHT_KEY_CODE) {
     increaseCounter();
-    createTemplate();
+    pasteTemplateToPage();
   }
 
   if (evt.altKey && evt.key === ARROW_LEFT_KEY_CODE) {
     decreaseCounter();
-    createTemplate();
+    pasteTemplateToPage();
   }
 });
