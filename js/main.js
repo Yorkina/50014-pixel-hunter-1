@@ -42,16 +42,14 @@ const increase = (currentNumber, min) => {
 
 document.addEventListener(`keydown`, (evt) => {
   if (evt.altKey && evt.key === ARROW_LEFT_KEY_CODE) {
-    const currentScreen = currentActiveScreen;
-    currentActiveScreen = decrease(currentScreen, MIN_SCREEN_PAGE_NUMBER);
+    currentActiveScreen = decrease(currentActiveScreen, MIN_SCREEN_PAGE_NUMBER);
     pasteScreen(templates[currentActiveScreen]);
   }
 });
 
 document.addEventListener(`keydown`, (evt) => {
   if (evt.altKey && evt.key === ARROW_RIGHT_KEY_CODE) {
-    const currentScreen = currentActiveScreen;
-    currentActiveScreen = increase(currentScreen, templates.length - 1);
+    currentActiveScreen = increase(currentActiveScreen, templates.length - 1);
     pasteScreen(templates[currentActiveScreen]);
   }
 });
