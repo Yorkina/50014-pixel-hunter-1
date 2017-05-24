@@ -32,18 +32,26 @@ const pasteScreen = (content) => {
   mainContainer.appendChild(newNode);
 };
 
+const decrease = (currentNumber, max) => {
+  return Math.max(--currentNumber, max);
+};
+
+const increase = (currentNumber, min) => {
+  return Math.min(++currentNumber, min);
+};
+
 document.addEventListener(`keydown`, (evt) => {
   if (evt.altKey && evt.key === ARROW_LEFT_KEY_CODE) {
-    const currentScreen = --currentActiveScreen;
-    currentActiveScreen = Math.max(MIN_SCREEN_PAGE_NUMBER, currentScreen);
+    const currentScreen = currentActiveScreen;
+    currentActiveScreen = decrease(currentScreen, MIN_SCREEN_PAGE_NUMBER);
     pasteScreen(templates[currentActiveScreen]);
   }
 });
 
 document.addEventListener(`keydown`, (evt) => {
   if (evt.altKey && evt.key === ARROW_RIGHT_KEY_CODE) {
-    const currentScreen = ++currentActiveScreen;
-    currentActiveScreen = Math.min(templates.length - 1, currentScreen);
+    const currentScreen = currentActiveScreen;
+    currentActiveScreen = increase(currentScreen, templates.length - 1);
     pasteScreen(templates[currentActiveScreen]);
   }
 });
