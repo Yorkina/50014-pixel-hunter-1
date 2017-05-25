@@ -2,13 +2,17 @@ const centralContainer = document.querySelector(`.central`);
 const ARROW_RIGHT_KEY_CODE = `ArrowRight`;
 const ARROW_LEFT_KEY_CODE = `ArrowLeft`;
 const MIN_SCREEN_PAGE_NUMBER = 0;
+
 let activeScreen = 0;
 
 const screens = [document.querySelector(`.central`)]
-  .map(() => {
+  .map((element) => {
     const fragment = document.createDocumentFragment();
-    const newElement = centralContainer.cloneNode(true);
-    fragment.appendChild(newElement);
+    const cloneElement = element.cloneNode(true);
+    const content = cloneElement.querySelector(`.central__content`);
+    const footer = cloneElement.querySelector(`.footer`);
+    fragment.appendChild(content);
+    fragment.appendChild(footer);
     return fragment;
   })
   .concat([
