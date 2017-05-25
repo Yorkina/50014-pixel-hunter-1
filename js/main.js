@@ -1,55 +1,49 @@
+const centralContainer = document.querySelector(`.central`);
 const ARROW_RIGHT_KEY_CODE = `ArrowRight`;
-
 const ARROW_LEFT_KEY_CODE = `ArrowLeft`;
-
 const MIN_SCREEN_PAGE_NUMBER = 0;
+let activeScreen = 0;
 
-let currentActiveScreen = 0;
+const screens = [document.querySelector(`.central`)]
+  .map(() => {
+    const fragment = document.createDocumentFragment();
+    const newElement = centralContainer.cloneNode(true);
+    fragment.appendChild(newElement);
+    return fragment;
+  })
+  .concat([
+    document.querySelector(`#greeting`),
+    document.querySelector(`#rules`),
+    document.querySelector(`#game-1`),
+    document.querySelector(`#game-2`),
+    document.querySelector(`#game-3`),
+    document.querySelector(`#stats`)
+  ].map((screen) => screen.content));
 
-const templates = [
-  document.querySelector(`#greeting`),
-  document.querySelector(`#rules`),
-  document.querySelector(`#game-1`),
-  document.querySelector(`#game-2`),
-  document.querySelector(`#game-3`),
-  document.querySelector(`#stats`)
-].map((template) => template.content);
-
-const addFragment = () => {
-  const mainContainer = document.querySelector(`.central`);
-  const fragment = document.createDocumentFragment();
-  const newMain = mainContainer.cloneNode(true);
-  fragment.appendChild(newMain);
-  return fragment;
-};
-
-templates.unshift(addFragment());
-
-const pasteScreen = (content) => {
-  const mainContainer = document.querySelector(`.central`);
+const pasteScreen = (content, element) => {
   const newNode = content.cloneNode(true);
-  mainContainer.innerHTML = ``;
-  mainContainer.appendChild(newNode);
+  element.innerHTML = ``;
+  element.appendChild(newNode);
 };
 
-const decrease = (currentNumber, max) => {
-  return Math.max(--currentNumber, max);
+const decrease = (number, min) => {
+  return Math.max(--number, min);
 };
 
-const increase = (currentNumber, min) => {
-  return Math.min(++currentNumber, min);
+const increase = (number, max) => {
+  return Math.min(++number, max);
 };
 
 document.addEventListener(`keydown`, (evt) => {
   if (evt.altKey && evt.key === ARROW_LEFT_KEY_CODE) {
-    currentActiveScreen = decrease(currentActiveScreen, MIN_SCREEN_PAGE_NUMBER);
-    pasteScreen(templates[currentActiveScreen]);
+    activeScreen = decrease(activeScreen, MIN_SCREEN_PAGE_NUMBER);
+    pasteScreen(screens[activeScreen], centralContainer);
   }
 });
 
 document.addEventListener(`keydown`, (evt) => {
   if (evt.altKey && evt.key === ARROW_RIGHT_KEY_CODE) {
-    currentActiveScreen = increase(currentActiveScreen, templates.length - 1);
-    pasteScreen(templates[currentActiveScreen]);
+    activeScreen = increase(activeScreen, screens.length - 1);
+    pasteScreen(screens[activeScreen], centralContainer);
   }
 });
