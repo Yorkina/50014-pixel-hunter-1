@@ -9,10 +9,8 @@ const screens = [document.querySelector(`.central`)]
   .map((element) => {
     const fragment = document.createDocumentFragment();
     const cloneElement = element.cloneNode(true);
-    const content = cloneElement.querySelector(`.central__content`);
-    const footer = cloneElement.querySelector(`.footer`);
-    fragment.appendChild(content);
-    fragment.appendChild(footer);
+    fragment.appendChild(cloneElement.querySelector(`.central__content`));
+    fragment.appendChild(cloneElement.querySelector(`.footer`));
     return fragment;
   })
   .concat([
