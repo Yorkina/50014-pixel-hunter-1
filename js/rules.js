@@ -3,6 +3,7 @@ import getElementFromTemplate from './getElementFromTemplate';
 import greeting from './greeting';
 import gameOne from './gameOne';
 
+
 const template = `<header class="header">
     <div class="header__back">
       <span class="back">
