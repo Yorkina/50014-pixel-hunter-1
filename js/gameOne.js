@@ -78,11 +78,11 @@ const answerFirst = [...questionFirst.querySelectorAll(`.game__answer input`)];
 const answerSecond = [...questionSecond.querySelectorAll(`.game__answer input`)];
 const inputs = [...element.querySelectorAll(`input`)];
 
-const checkAbilityToGo = () => {
-  const answersChecked = inputs.filter((answer) => {
-    return answer.checked;
+const checkAbilityToGo = (elements) => {
+  const elementsChecked = elements.filter((item) => {
+    return item.checked;
   });
-  return answersChecked.length === 2;
+  return elementsChecked.length === 2;
 };
 
 const questionFirstHandler = (evt) => {
@@ -90,7 +90,7 @@ const questionFirstHandler = (evt) => {
     answer.disabled = true;
   });
 
-  const shouldGoToNextScreen = checkAbilityToGo();
+  const shouldGoToNextScreen = checkAbilityToGo(inputs);
   if (shouldGoToNextScreen) {
     addElementToPage(gameTwo);
   }
@@ -101,7 +101,7 @@ const questionSecondHandler = (evt) => {
     answer.disabled = true;
   });
 
-  const shouldGoToNextScreen = checkAbilityToGo();
+  const shouldGoToNextScreen = checkAbilityToGo(inputs);
   if (shouldGoToNextScreen) {
     addElementToPage(gameTwo);
   }
