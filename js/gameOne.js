@@ -78,13 +78,12 @@ const answerFirst = [...questionFirst.querySelectorAll(`.game__answer input`)];
 const answerSecond = [...questionSecond.querySelectorAll(`.game__answer input`)];
 const results = [];
 
-const answerFirstHandler = (evt) => {
+const questionFirstHandler = (evt) => {
   answerFirst.forEach((answer) => {
     if (answer.checked) {
       results.push(answer.value);
-    } else {
-      answer.disabled = true;
     }
+    answer.disabled = true;
   });
 
   if (results.length === 2) {
@@ -92,13 +91,12 @@ const answerFirstHandler = (evt) => {
   }
 };
 
-const answerSecondHandler = (evt) => {
+const questionSecondHandler = (evt) => {
   answerSecond.forEach((answer) => {
     if (answer.checked) {
       results.push(answer.value);
-    } else {
-      answer.disabled = true;
     }
+    answer.disabled = true;
   });
 
   if (results.length === 2) {
@@ -107,11 +105,7 @@ const answerSecondHandler = (evt) => {
 };
 
 buttonBack.addEventListener(`click`, (evt) => addElementToPage(greeting));
-
-answerFirst.forEach(
-    (input) => input.addEventListener(`change`, answerFirstHandler));
-
-answerSecond.forEach(
-    (input) => input.addEventListener(`change`, answerSecondHandler));
+questionFirst.addEventListener(`change`, questionFirstHandler);
+questionSecond.addEventListener(`change`, questionSecondHandler);
 
 export default element;
