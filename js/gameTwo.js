@@ -62,11 +62,9 @@ const template = `<header class="header">
 
 const element = getElementFromTemplate(template);
 const buttonBack = element.querySelector(`.back`);
-const answerButtons = [...element.querySelectorAll(`.game__answer input`)];
+const form = element.querySelector(`.game__content`);
 
 buttonBack.addEventListener(`click`, (evt) => addElementToPage(greeting));
-
-answerButtons.forEach((input) => input.addEventListener(`change`,
-    (evt) => addElementToPage(gameThree)));
+form.addEventListener(`change`, (evt) => addElementToPage(gameThree));
 
 export default element;

@@ -76,30 +76,33 @@ const [questionFirst, questionSecond] = [...element.querySelectorAll(
     `.game__option`)];
 const answerFirst = [...questionFirst.querySelectorAll(`.game__answer input`)];
 const answerSecond = [...questionSecond.querySelectorAll(`.game__answer input`)];
-const results = [];
+const inputs = [...element.querySelectorAll(`input`)];
+
+const checkAbilityToGo = () => {
+  const answersChecked = inputs.filter((answer) => {
+    return answer.checked;
+  });
+  return answersChecked.length === 2;
+};
 
 const questionFirstHandler = (evt) => {
   answerFirst.forEach((answer) => {
-    if (answer.checked) {
-      results.push(answer.value);
-    }
     answer.disabled = true;
   });
 
-  if (results.length === 2) {
+  const shouldGoToNextScreen = checkAbilityToGo();
+  if (shouldGoToNextScreen) {
     addElementToPage(gameTwo);
   }
 };
 
 const questionSecondHandler = (evt) => {
   answerSecond.forEach((answer) => {
-    if (answer.checked) {
-      results.push(answer.value);
-    }
     answer.disabled = true;
   });
 
-  if (results.length === 2) {
+  const shouldGoToNextScreen = checkAbilityToGo();
+  if (shouldGoToNextScreen) {
     addElementToPage(gameTwo);
   }
 };
