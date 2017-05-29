@@ -1,5 +1,5 @@
 export default (template) => {
-  const element = document.createElement(`div`);
+  const element = document.createElement(`template`);
   element.innerHTML = template;
-  return element;
+  return element.content;
 };

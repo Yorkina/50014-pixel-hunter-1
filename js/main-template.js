@@ -15,6 +15,6 @@ ${footer}`;
 const main = getElementFromTemplate(template);
 const button = main.querySelector(`.intro__asterisk`);
 
-button.addEventListener(`click`, () => addElementToPage(greeting));
+button.addEventListener(`click`, () => addElementToPage(greeting()));
 
 export default main;
