@@ -1,7 +1,7 @@
 import addElementToPage from './add-element-to-page';
 import getElementFromTemplate from './get-element-from-template';
-import greeting from './greeting';
-import result from './result';
+import getGreeting from './greeting';
+import getResult from './result';
 import header from './header';
 import footer from './footer';
 
@@ -43,9 +43,9 @@ const createScreen = () => {
   const backButton = element.querySelector(`.back`);
   const answers = [...element.querySelectorAll(`.game__option`)];
 
-  backButton.addEventListener(`click`, () => addElementToPage(greeting()));
+  backButton.addEventListener(`click`, () => addElementToPage(getGreeting()));
   answers.forEach((answer) => answer.addEventListener(`click`,
-      () => addElementToPage(result())));
+      () => addElementToPage(getResult())));
 
   return element;
 };

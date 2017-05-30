@@ -1,6 +1,6 @@
 import addElementToPage from './add-element-to-page';
 import getElementFromTemplate from './get-element-from-template';
-import greeting from './greeting';
+import getGreeting from './greeting';
 import footer from './footer';
 
 
@@ -15,6 +15,6 @@ ${footer}`;
 const main = getElementFromTemplate(template);
 const button = main.querySelector(`.intro__asterisk`);
 
-button.addEventListener(`click`, () => addElementToPage(greeting()));
+button.addEventListener(`click`, () => addElementToPage(getGreeting()));
 
 export default main;

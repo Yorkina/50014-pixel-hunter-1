@@ -1,6 +1,6 @@
 import addElementToPage from './add-element-to-page';
 import getElementFromTemplate from './get-element-from-template';
-import greeting from './greeting';
+import getGreeting from './greeting';
 import footer from './footer';
 import arrowPrev from './header/arrowPrev';
 
@@ -114,7 +114,7 @@ const createScreen = () => {
   const element = getElementFromTemplate(template);
   const backButton = element.querySelector(`.back`);
 
-  backButton.addEventListener(`click`, () => addElementToPage(greeting()));
+  backButton.addEventListener(`click`, () => addElementToPage(getGreeting()));
 
   return element;
 };

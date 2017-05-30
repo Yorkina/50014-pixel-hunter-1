@@ -1,6 +1,6 @@
 import addElementToPage from './add-element-to-page';
 import getElementFromTemplate from './get-element-from-template';
-import rules from './rules';
+import getRules from './rules';
 import footer from './footer';
 
 
@@ -23,7 +23,7 @@ const createScreen = () => {
   const element = getElementFromTemplate(template);
   const button = element.querySelector(`.greeting__continue`);
 
-  button.addEventListener(`click`, () => addElementToPage(rules()));
+  button.addEventListener(`click`, () => addElementToPage(getRules()));
 
   return element;
 };

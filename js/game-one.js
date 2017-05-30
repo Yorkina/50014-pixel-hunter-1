@@ -1,7 +1,7 @@
 import addElementToPage from './add-element-to-page';
 import getElementFromTemplate from './get-element-from-template';
-import greeting from './greeting';
-import gameTwo from './game-two';
+import getGreeting from './greeting';
+import getGameTwo from './game-two';
 import header from './header';
 import footer from './footer';
 
@@ -68,7 +68,7 @@ const createScreen = () => {
     answersFirst.forEach((answer) => (answer.disabled = true));
 
     if (shouldGoToNextScreen(inputs)) {
-      addElementToPage(gameTwo());
+      addElementToPage(getGameTwo());
     }
   };
 
@@ -76,11 +76,11 @@ const createScreen = () => {
     answersSecond.forEach((answer) => (answer.disabled = true));
 
     if (shouldGoToNextScreen(inputs)) {
-      addElementToPage(gameTwo());
+      addElementToPage(getGameTwo());
     }
   };
 
-  backButton.addEventListener(`click`, addElementToPage(greeting()));
+  backButton.addEventListener(`click`, addElementToPage(getGreeting()));
   questionFirst.addEventListener(`change`, firstQuestionHandler);
   questionSecond.addEventListener(`change`, secondQuestionHandler);
 

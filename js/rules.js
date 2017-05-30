@@ -1,7 +1,7 @@
 import addElementToPage from './add-element-to-page';
 import getElementFromTemplate from './get-element-from-template';
-import greeting from './greeting';
-import gameOne from './game-one';
+import getGreeting from './greeting';
+import getGameOne from './game-one';
 import footer from './footer';
 import arrowPrev from './header/arrowPrev';
 
@@ -34,13 +34,13 @@ const createScreen = () => {
 
   const buttonHandler = (evt) => {
     evt.preventDefault();
-    addElementToPage(gameOne());
+    addElementToPage(getGameOne());
   };
 
   const inputHandler = (evt) => (button.disabled = !(evt.target.value).trim());
   input.addEventListener(`input`, inputHandler);
 
-  backButton.addEventListener(`click`, () => addElementToPage(greeting()));
+  backButton.addEventListener(`click`, () => addElementToPage(getGreeting()));
   button.addEventListener(`click`, buttonHandler);
 
 

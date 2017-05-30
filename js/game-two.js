@@ -1,7 +1,7 @@
 import addElementToPage from './add-element-to-page';
 import getElementFromTemplate from './get-element-from-template';
-import greeting from './greeting';
-import gameThree from './game-three';
+import getGreeting from './greeting';
+import getGameThree from './game-three';
 import header from './header';
 import footer from './footer';
 
@@ -46,8 +46,8 @@ const createScreen = () => {
   const backButton = element.querySelector(`.back`);
   const form = element.querySelector(`.game__content`);
 
-  backButton.addEventListener(`click`, () => addElementToPage(greeting()));
-  form.addEventListener(`change`, () => addElementToPage(gameThree()));
+  backButton.addEventListener(`click`, () => addElementToPage(getGreeting()));
+  form.addEventListener(`change`, () => addElementToPage(getGameThree()));
 
   return element;
 };
