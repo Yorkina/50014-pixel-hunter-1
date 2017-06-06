@@ -2,7 +2,7 @@ import addElementToPage from '../add-element-to-page';
 import getElementFromTemplate from '../get-element-from-template';
 import getGreeting from './greeting';
 import footer from './footer';
-import header from './header/header';
+import createHeader from './header/header';
 import getStats from './stats/game-stats';
 import getResults from './stats/results';
 import getExtra from './stats/extra-points';
@@ -10,7 +10,7 @@ import getExtra from './stats/extra-points';
 
 const createScreen = () => {
   const template = `
-  ${header(``)}
+  ${createHeader()}
   <div class="result">
     <h1>Победа!</h1>
     <table class="result__table">

@@ -3,11 +3,11 @@ import getElementFromTemplate from '../get-element-from-template';
 import getGreeting from './greeting';
 import getGameOne from './game-one';
 import footer from './footer';
-import header from './header/header';
+import createHeader from './header/header';
 
 const createScreen = () => {
   const template = `
-  ${header(``)}
+  ${createHeader()}
   <div class="rules">
     <h1 class="rules__title">Правила</h1>
     <p class="rules__description">Угадай 10 раз для каждого изображения фото <img
