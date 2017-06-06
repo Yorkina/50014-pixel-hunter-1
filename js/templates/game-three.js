@@ -3,7 +3,7 @@ import getElementFromTemplate from '../get-element-from-template';
 import data from '../game-data';
 import getGreeting from './greeting';
 import getResult from './result';
-import header from './header/header';
+import createHeader from './header/header';
 import statistics from './header/statistics';
 import footer from './footer';
 import getResults from './stats/game-stats';
@@ -12,7 +12,7 @@ import getOption from './options/option';
 
 const createScreen = () => {
   const template = `
-  ${header(statistics)}
+  ${createHeader(statistics)}
   <div class="game">
     <p class="game__task">Найдите рисунок среди изображений</p>
     <form class="game__content  game__content--triple">
