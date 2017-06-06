@@ -8,7 +8,7 @@ export default [
           {type: `paint`, text: `Рисунок`}
         ],
         picture: {
-          src: `http://placehold.it/468x458`,
+          src: `https://placehold.it/468x458`,
           width: 468,
           height: 458
         }
@@ -19,7 +19,7 @@ export default [
           {type: `paint`, text: `Рисунок`}
         ],
         picture: {
-          src: `http://placehold.it/468x458`,
+          src: `https://placehold.it/468x458`,
           width: 468,
           height: 458
         }
@@ -34,7 +34,7 @@ export default [
           {type: `paint`, text: `Рисунок`}
         ],
         picture: {
-          src: `http://placehold.it/705x455`,
+          src: `https://placehold.it/705x455`,
           width: 705,
           height: 455
         }
@@ -46,7 +46,7 @@ export default [
       {
         labels: [],
         picture: {
-          src: `http://placehold.it/304x455`,
+          src: `https://placehold.it/304x455`,
           width: 304,
           height: 455
         }
@@ -54,7 +54,7 @@ export default [
       {
         labels: [],
         picture: {
-          src: `http://placehold.it/304x455`,
+          src: `https://placehold.it/304x455`,
           width: 304,
           height: 455
         }
@@ -62,7 +62,7 @@ export default [
       {
         labels: [],
         picture: {
-          src: `http://placehold.it/304x455`,
+          src: `https://placehold.it/304x455`,
           width: 304,
           height: 455
         }
