@@ -1,14 +1,13 @@
-import addElementToPage from './add-element-to-page';
-import getElementFromTemplate from './get-element-from-template';
+import addElementToPage from '../add-element-to-page';
+import getElementFromTemplate from '../get-element-from-template';
 import getGreeting from './greeting';
 import getGameOne from './game-one';
 import footer from './footer';
-import arrowPrev from './header/arrowPrev';
+import header from './header/header';
 
 const createScreen = () => {
-  const template = `<header class="header">
-  ${arrowPrev}
-  </header>
+  const template = `
+  ${header(``)}
   <div class="rules">
     <h1 class="rules__title">Правила</h1>
     <p class="rules__description">Угадай 10 раз для каждого изображения фото <img
