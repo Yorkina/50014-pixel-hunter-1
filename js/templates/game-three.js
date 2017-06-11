@@ -22,7 +22,7 @@ const createScreen = (data, gameStatistics, allAnswers) => {
 
   const getFinishedQuestions = (answersArray) => {
     return answersArray.map((answer) => {
-      return `<li class="stats__result stats__result--${answer || `unknown`}"></li>`;
+      return `<li class="stats__result stats__result--${answer}"></li>`;
     }).join(``);
   };
 
