@@ -1,23 +1,25 @@
-export default (answers) => {
+export default (answers, labels) => {
 
-  const createLabel = (param, index) => {
-    return param.labels.map((label) => {
-      return `<label class="game__answer game__answer--${label.type}">
-         <input name="question${index}" type="radio" value=${label.type}>
-         <span>${label.text}</span>
+  const getLabels = (index) => {
+    return `<label class="game__answer game__answer--photo">
+         <input name="question${index}" type="radio" value="photo">
+         <span>Фото</span>
+        </label>
+        <label class="game__answer game__answer--paint">
+         <input name="question${index}" type="radio" value="paint">
+         <span>Рисунок</span>
        </label>`;
-    }).join(``);
   };
 
-  const label = (params) => {
+  const createOptions = (params) => {
     return params.map((param, index) => {
-      return `<div class="game__option">
+      return `<div class="game__option" data-value=${param.picture.type}>
         <img src=${param.picture.src}
           alt="Option ${index}" width=${param.picture.width} height=${param.picture.height}>
-        ${createLabel(param, index)}
+          ${labels ? getLabels(index) : ``}
       </div>`;
     }).join(``);
   };
 
-  return label(answers);
+  return createOptions(answers);
 };

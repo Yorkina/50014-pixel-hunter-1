@@ -1,9 +1,10 @@
 import addElementToPage from '../add-element-to-page';
 import getElementFromTemplate from '../get-element-from-template';
 import getGreeting from './greeting';
-import getGameOne from './game-one';
 import footer from './footer';
 import createHeader from './header/header';
+import getScreen from '../game-switcher';
+import initialStatements from '../rules-data';
 
 const createScreen = () => {
   const template = `
@@ -33,7 +34,7 @@ const createScreen = () => {
 
   const buttonHandler = (evt) => {
     evt.preventDefault();
-    addElementToPage(getGameOne());
+    getScreen(initialStatements.screenNumber, initialStatements);
   };
 
   const inputHandler = (evt) => (button.disabled = !(evt.target.value).trim());

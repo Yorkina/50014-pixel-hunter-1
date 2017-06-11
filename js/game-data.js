@@ -1,68 +1,57 @@
 export default [
   {
-    type: 0,
+    screen: `game-1`,
     answers: [
       {
-        labels: [
-          {type: `photo`, text: `Фото`},
-          {type: `paint`, text: `Рисунок`}
-        ],
         picture: {
-          src: `https://placehold.it/468x458`,
+          src: `https://i.imgur.com/DiHM5Zb.jpg`,
           width: 468,
-          height: 458
+          height: 458,
+          type: `photo`
         }
       },
       {
-        labels: [
-          {type: `photo`, text: `Фото`},
-          {type: `paint`, text: `Рисунок`}
-        ],
         picture: {
-          src: `https://placehold.it/468x458`,
+          src: `http://i.imgur.com/1KegWPz.jpg`,
           width: 468,
-          height: 458
+          height: 458,
+          type: `paint`
         }
       }
     ]
   }, {
-    type: 1,
+    screen: `game-2`,
     answers: [
       {
-        labels: [
-          {type: `photo`, text: `Фото`},
-          {type: `paint`, text: `Рисунок`}
-        ],
         picture: {
-          src: `https://placehold.it/705x455`,
+          src: `https://i.imgur.com/DiHM5Zb.jpg`,
           width: 705,
-          height: 455
+          height: 455,
+          type: `photo`
         }
       }
     ]
   }, {
-    type: 2,
+    screen: `game-3`,
     answers: [
       {
-        labels: [],
         picture: {
-          src: `https://placehold.it/304x455`,
+          src: `http://i.imgur.com/1KegWPz.jpg`,
           width: 304,
           height: 455
         }
       },
       {
-        labels: [],
         picture: {
-          src: `https://placehold.it/304x455`,
+          src: `https://i.imgur.com/DiHM5Zb.jpg`,
           width: 304,
-          height: 455
+          height: 455,
+          type: `paint`
         }
       },
       {
-        labels: [],
         picture: {
-          src: `https://placehold.it/304x455`,
+          src: `http://i.imgur.com/DKR1HtB.jpg`,
           width: 304,
           height: 455
         }
