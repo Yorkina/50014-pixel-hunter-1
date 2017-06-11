@@ -9,12 +9,18 @@ import getOption from './options/option';
 import timer from '../helpers/timer';
 
 
-const createScreen = (data, gameStatistics) => {
+const createScreen = (data, gameStatistics, allAnswers) => {
   const [type1] = data.answers;
   let {time, lives, screenNumber, answers} = gameStatistics;
 
 
-  const getAnswers = (answersArray) => {
+  const getFuturesAnswers = (answersNumber, currentFinished) => {
+    return [...Array(answersNumber - currentFinished)].map((answer) => {
+      return `<li class="stats__result stats__result--unknown"></li>`;
+    }).join(``);
+  };
+
+  const getFinishedQuestions = (answersArray) => {
     return answersArray.map((answer) => {
       return `<li class="stats__result stats__result--${answer || `unknown`}"></li>`;
     }).join(``);
@@ -29,7 +35,8 @@ const createScreen = (data, gameStatistics) => {
     </form>
     <div class="stats">
       <ul class="stats">
-        ${getAnswers(answers)}
+        ${getFinishedQuestions(answers)}
+        ${getFuturesAnswers(allAnswers, answers.length)}
       </ul>
     </div>
   </div>
@@ -40,16 +47,26 @@ const createScreen = (data, gameStatistics) => {
   const options = [...element.querySelectorAll(`.game__option`)];
   const timerElement = element.querySelector(`.game__timer`);
 
-  const saveStatistics = (correct) => {
-    const answerBonus = correct ? `correct` : `wrong`;
-    const timeBonus = Number(timerElement.innerText) > 10 ? `fast` : `slow`;
+  const getBonusForTime = (currentTime) => {
+    if (currentTime > 10) {
+      return `fast`;
+    }
 
-    lives.current = correct ? lives.current : --lives.current;
-    answers = answers.concat([answerBonus, timeBonus]);
+    if (currentTime < 20) {
+      return `slow`;
+    }
+
+    return `correct`;
+  };
+
+  const saveStatistics = (correct, currentTime) => {
+    const answerBonus = correct ? getBonusForTime(currentTime) : `wrong`;
+    lives = correct ? lives : --lives;
+    answers = answers.concat([answerBonus]);
   };
 
   const timeIsOverHandler = () => {
-    saveStatistics(false);
+    saveStatistics(false, Number(timerElement.innerText));
     addElementToPage(getResult({time, lives, screenNumber, answers}));
   };
 
@@ -57,7 +74,7 @@ const createScreen = (data, gameStatistics) => {
 
   const answerClickHandler = (evt) => {
     const correct = type1.picture.type === evt.target.dataset.value;
-    saveStatistics(correct);
+    saveStatistics(correct, Number(timerElement.innerText));
     stopTimer();
     addElementToPage(getResult({time, lives, screenNumber, answers}));
   };

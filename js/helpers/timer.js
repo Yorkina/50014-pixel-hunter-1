@@ -1,5 +1,5 @@
 export default (element, initialTime, handler) => {
-  let time = 5;
+  let time = 15;
   const timer = () => {
     element.textContent = --time;
 

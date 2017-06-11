@@ -41,7 +41,7 @@ export default Object.freeze({
           points: 50
         }
       ],
-      final: 950
+      final: 1000
     }
   ]
 });

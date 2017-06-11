@@ -15,13 +15,13 @@ export default (number, gameStatistics) => {
 
   switch (id) {
     case `game-1`:
-      addElementToPage(getGameOne(screenData[0], gameStatistics));
+      addElementToPage(getGameOne(screenData[0], gameStatistics, games.length));
       break;
     case `game-2`:
-      addElementToPage(getGameTwo(screenData[0], gameStatistics));
+      addElementToPage(getGameTwo(screenData[0], gameStatistics, games.length));
       break;
     case `game-3`:
-      addElementToPage(getGameThree(screenData[0], gameStatistics));
+      addElementToPage(getGameThree(screenData[0], gameStatistics, games.length));
       break;
     default:
       getResult();

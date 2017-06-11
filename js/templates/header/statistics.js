@@ -1,7 +1,9 @@
-const getLives = (lives) => {
-  const diff = lives.start - lives.current;
+import rules from '../../rules-data';
 
-  return [...Array(lives.start)].map((live, i) =>
+const getLives = (lives) => {
+  const diff = rules.lives - lives;
+
+  return [...Array(rules.lives)].map((live, i) =>
     `<img src="img/heart__${i < diff ? `empty` : `full`}.svg"
   class="game__heart" alt="Life" width="32" height="32">`).join(``);
 };
