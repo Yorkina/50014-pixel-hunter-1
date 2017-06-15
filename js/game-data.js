@@ -1,6 +1,6 @@
 export default [
   {
-    screen: `game-1`,
+    type: `game-screen-1`,
     answers: [
       {
         picture: {
@@ -20,7 +20,7 @@ export default [
       }
     ]
   }, {
-    screen: `game-2`,
+    type: `game-screen-2`,
     answers: [
       {
         picture: {
@@ -32,7 +32,7 @@ export default [
       }
     ]
   }, {
-    screen: `game-3`,
+    type: `game-screen-3`,
     answers: [
       {
         picture: {

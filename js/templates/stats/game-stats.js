@@ -44,6 +44,6 @@ export default () => {
     }).join(``);
   };
 
-  return createResult(statsData.results);
+  return createResult(statsData);
 };
 

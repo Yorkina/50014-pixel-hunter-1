@@ -7,23 +7,19 @@ import getResult from './templates/result';
 
 
 export default (number, gameStatistics) => {
-  const id = `game-` + number;
-
-  const screenData = games.filter((game) => {
-    return game.screen === id;
-  });
+  const id = `game-screen-${number + 1}`;
 
   switch (id) {
-    case `game-1`:
-      addElementToPage(getGameOne(screenData[0], gameStatistics, games.length));
+    case `game-screen-1`:
+      addElementToPage(getGameOne(games[number], gameStatistics, games.length));
       break;
-    case `game-2`:
-      addElementToPage(getGameTwo(screenData[0], gameStatistics, games.length));
+    case `game-screen-2`:
+      addElementToPage(getGameTwo(games[number], gameStatistics, games.length));
       break;
-    case `game-3`:
-      addElementToPage(getGameThree(screenData[0], gameStatistics, games.length));
+    case `game-screen-3`:
+      addElementToPage(getGameThree(games[number], gameStatistics, games.length));
       break;
     default:
-      getResult();
+      addElementToPage(getResult());
   }
 };

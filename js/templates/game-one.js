@@ -14,17 +14,15 @@ const createScreen = (data, gameStatistics, allAnswers) => {
   const [type1, type2] = data.answers;
   let {time, lives, screenNumber, answers} = gameStatistics;
 
-  const getFinishedQuestions = (answersArray) => {
-    return answersArray.map((answer) => {
-      return `<li class="stats__result stats__result--${answer}"></li>`;
-    }).join(``);
-  };
+  const getFinishedQuestions = (answersArray) =>
+    answersArray.map((answer) =>
+      `<li class="stats__result stats__result--${answer}"></li>`
+    ).join(``);
 
-  const getFuturesAnswers = (answersNumber, currentFinished) => {
-    return [...Array(answersNumber - currentFinished)].map((answer) => {
-      return `<li class="stats__result stats__result--unknown"></li>`;
-    }).join(``);
-  };
+  const getFutureAnswers = (answersNumber, currentFinished) =>
+    new Array(allAnswers - currentFinished).fill(``).map((answer) =>
+      `<li class="stats__result stats__result--unknown"></li>`
+    ).join(``);
 
   const template = `
   ${createHeader(statistics, {time, lives})}
@@ -36,7 +34,7 @@ const createScreen = (data, gameStatistics, allAnswers) => {
     <div class="stats">
       <ul class="stats">
         ${getFinishedQuestions(answers)}
-        ${getFuturesAnswers(allAnswers, answers.length)}
+        ${getFutureAnswers(allAnswers, answers.length)}
       </ul>
     </div>
   </div>
@@ -78,17 +76,29 @@ const createScreen = (data, gameStatistics, allAnswers) => {
     answers = answers.concat([answerBonus]);
   };
 
-  const timeIsOverHandler = () => {
-    saveStatistics(false, Number(timerElement.innerText));
+  const deleteTimer = () => {
+    stopTimer();
+    document.removeEventListener(`tictac`, tictacHandler);
+  };
 
-    if (lives > 0) {
-      getScreen(++screenNumber, {time, lives, screenNumber, answers});
-    } else {
-      addElementToPage(getResult({time, lives, screenNumber, answers}));
+  const tictacHandler = () => {
+    let timerTime = Number(timerElement.innerText);
+    timerElement.innerText = --timerTime;
+
+    if (timerTime === 0) {
+      saveStatistics(false, timerTime);
+
+      if (lives > 0) {
+        getScreen(++screenNumber, {time, lives, screenNumber, answers});
+      } else {
+        addElementToPage(getResult({time, lives, screenNumber, answers}));
+      }
+
+      deleteTimer();
     }
   };
 
-  const stopTimer = timer(timerElement, time, timeIsOverHandler);
+  const stopTimer = timer(time);
 
   const firstQuestionHandler = () => {
     accumulateAnswers(answersFirst, type1.picture.type);
@@ -96,7 +106,7 @@ const createScreen = (data, gameStatistics, allAnswers) => {
     if (currentAnswers.length === 2) {
       const correct = currentAnswers.every((answer) => answer === true);
       saveStatistics(correct, Number(timerElement.innerText));
-      stopTimer();
+      deleteTimer();
       getScreen(++screenNumber, {time, lives, screenNumber, answers});
     }
   };
@@ -104,11 +114,10 @@ const createScreen = (data, gameStatistics, allAnswers) => {
   const secondQuestionHandler = () => {
     accumulateAnswers(answersSecond, type2.picture.type);
 
-
     if (currentAnswers.length === 2) {
       const correct = currentAnswers.every((answer) => answer === true);
       saveStatistics(correct, Number(timerElement.innerText));
-      stopTimer();
+      deleteTimer();
       getScreen(++screenNumber, {time, lives, screenNumber, answers});
     }
   };
@@ -116,7 +125,7 @@ const createScreen = (data, gameStatistics, allAnswers) => {
   backButton.addEventListener(`click`, addElementToPage(getGreeting()));
   questionFirst.addEventListener(`change`, firstQuestionHandler);
   questionSecond.addEventListener(`change`, secondQuestionHandler);
-  document.addEventListener(`timeIsOver`, timeIsOverHandler);
+  document.addEventListener(`tictac`, tictacHandler);
 
   return element;
 };

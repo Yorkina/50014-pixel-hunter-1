@@ -3,9 +3,10 @@ import rules from '../../rules-data';
 const getLives = (lives) => {
   const diff = rules.lives - lives;
 
-  return [...Array(rules.lives)].map((live, i) =>
-    `<img src="img/heart__${i < diff ? `empty` : `full`}.svg"
-  class="game__heart" alt="Life" width="32" height="32">`).join(``);
+  return new Array(rules.lives).fill(``).map((live, i) => {
+    const src = `src="img/heart__${i < diff ? `empty` : `full`}.svg"`;
+    return `<img ${src} class="game__heart" alt="Life" width="32" height="32">`;
+  }).join(``);
 };
 
 const stats = ({lives, time}) =>

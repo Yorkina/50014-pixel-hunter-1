@@ -1,21 +1,21 @@
-export default (element, initialTime, handler) => {
-  let time = 15;
+export default (initialTime) => {
+  let time = initialTime;
   const timer = () => {
-    element.textContent = --time;
+    --time;
 
-    if (time === 0) {
-      stopTimer();
-      const event = new CustomEvent(`timeIsOver`);
+    if (time >= 0) {
+      const event = new CustomEvent(`tictac`);
       document.dispatchEvent(event);
-      document.removeEventListener(`timeIsOver`, handler);
+    }
+
+    if (time < 0) {
+      stopTimer();
     }
   };
 
   const interval = setInterval(() => timer(), 1000);
 
-  const stopTimer = () => {
-    clearInterval(interval);
-  };
+  const stopTimer = () => clearInterval(interval);
 
   return stopTimer;
 };
