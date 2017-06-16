@@ -1,14 +1,14 @@
-import addElementToPage from './add-element-to-page';
-import getElementFromTemplate from './get-element-from-template';
+import addElementToPage from '../add-element-to-page';
+import getElementFromTemplate from '../get-element-from-template';
 import getGreeting from './greeting';
-import getGameOne from './game-one';
 import footer from './footer';
-import arrowPrev from './header/arrowPrev';
+import createHeader from './header/header';
+import getScreen from '../game-switcher';
+import initialStatements from '../rules-data';
 
 const createScreen = () => {
-  const template = `<header class="header">
-  ${arrowPrev}
-  </header>
+  const template = `
+  ${createHeader()}
   <div class="rules">
     <h1 class="rules__title">Правила</h1>
     <p class="rules__description">Угадай 10 раз для каждого изображения фото <img
@@ -34,7 +34,7 @@ const createScreen = () => {
 
   const buttonHandler = (evt) => {
     evt.preventDefault();
-    addElementToPage(getGameOne());
+    getScreen(initialStatements.screenNumber, initialStatements);
   };
 
   const inputHandler = (evt) => (button.disabled = !(evt.target.value).trim());

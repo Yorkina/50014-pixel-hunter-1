@@ -1,4 +1,4 @@
 import addElementToPage from './add-element-to-page';
-import mainTemplate from './main-template';
+import mainTemplate from './templates/main-template';
 
 addElementToPage(mainTemplate);

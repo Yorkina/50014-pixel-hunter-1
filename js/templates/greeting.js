@@ -1,5 +1,5 @@
-import addElementToPage from './add-element-to-page';
-import getElementFromTemplate from './get-element-from-template';
+import addElementToPage from '../add-element-to-page';
+import getElementFromTemplate from '../get-element-from-template';
 import getRules from './rules';
 import footer from './footer';
 
