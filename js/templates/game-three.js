@@ -1,7 +1,7 @@
 import addElementToPage from '../add-element-to-page';
 import getElementFromTemplate from '../get-element-from-template';
 import getGreeting from './greeting';
-import getResult from './result';
+import getScreen from '../game-switcher';
 import createHeader from './header/header';
 import statistics from './header/statistics';
 import footer from './footer';
@@ -11,7 +11,7 @@ import timer from '../helpers/timer';
 
 const createScreen = (data, gameStatistics, allAnswers) => {
   const [type1] = data.answers;
-  let {time, lives, screenNumber, answers} = gameStatistics;
+  let {time, lives, answers} = gameStatistics;
 
 
   const getFutureAnswers = (answersNumber, currentFinished) =>
@@ -75,7 +75,7 @@ const createScreen = (data, gameStatistics, allAnswers) => {
 
     if (timerTime === 0) {
       saveStatistics(false, timerTime);
-      addElementToPage(getResult({time, lives, screenNumber, answers}));
+      getScreen(null, {answers});
 
       deleteTimer();
     }
@@ -87,7 +87,7 @@ const createScreen = (data, gameStatistics, allAnswers) => {
     const correct = type1.picture.type === evt.target.dataset.value;
     saveStatistics(correct, Number(timerElement.innerText));
     deleteTimer();
-    addElementToPage(getResult({time, lives, screenNumber, answers}));
+    getScreen(null, {lives, answers});
   };
 
 

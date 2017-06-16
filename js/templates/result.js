@@ -11,7 +11,7 @@ const createScreen = (accumulateData) => {
   ${createHeader()}
   <div class="result">
     <h1>Победа!</h1>
-    ${getStats()}
+    ${getStats(accumulateData)}
   </div>
   ${footer}`;
 

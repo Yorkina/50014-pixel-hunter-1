@@ -6,7 +6,6 @@ import statistics from './header/statistics';
 import footer from './footer';
 import getOption from './options/option';
 import getScreen from '../game-switcher';
-import getResult from './result';
 import timer from '../helpers/timer';
 
 
@@ -79,7 +78,7 @@ const createScreen = (data, gameStatistics, allAnswers) => {
       if (lives > 0) {
         getScreen(++screenNumber, {time, lives, screenNumber, answers});
       } else {
-        addElementToPage(getResult({time, lives, screenNumber, answers}));
+        getScreen(null, {lives, answers});
       }
 
       deleteTimer();
