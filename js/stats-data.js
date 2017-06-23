@@ -1,20 +1,17 @@
 export default [
   {
     answers: [
-      `wrong`, `slow`, `fast`, `correct`, `wrong`, `correct`, `slow`,
-      `correct`, `fast`, `correct`],
-    lives: 2
+      `wrong`, `heart`, `fast`, `correct`, `wrong`, `unknown`, `slow`,
+      `unknown`, `fast`, `unknown`]
   },
   {
     answers: [
-      `wrong`, `wrong`, `fast`, `correct`, `wrong`, `correct`, `slow`,
-      `correct`, `fast`, `correct`],
-    lives: 0
+      `wrong`, `wrong`, `fast`, `correct`, `wrong`, `unknown`, `slow`,
+      `unknown`, `fast`, `unknown`]
   },
   {
     answers: [
-      `wrong`, `slow`, `fast`, `correct`, `wrong`, `slow`, `slow`,
-      `correct`, `fast`, `correct`],
-    lives: 1
+      `wrong`, `heart`, `fast`, `correct`, `wrong`, `heart`, `slow`,
+      `correct`, `fast`, `unknown`],
   }
 ];

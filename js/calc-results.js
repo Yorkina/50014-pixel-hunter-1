@@ -1,40 +1,35 @@
-import statsData from './stats-data';
-
-const getCalculatedResults = (answers, lives) => {
-  statsData.push({'answers': answers, 'lives': lives});
-
+const getCalculatedResults = (results) => {
   const costs = {
     CORRECT: 100,
     ADDITIONAL: 50
   };
 
-  const getAdditionals = (numFast, numSlow, numLive) => {
+  const getAdditionals = (fast, slow, heart) => {
     const additionals = [];
 
-    if (numFast) {
-      additionals.push({quantity: numFast, type: `fast`, points: costs.ADDITIONAL});
+    if (fast) {
+      additionals.push({extra: fast, type: `fast`, points: costs.ADDITIONAL});
     }
 
-    if (numSlow) {
-      additionals.push({quantity: numSlow, type: `slow`, points: costs.ADDITIONAL});
+    if (slow) {
+      additionals.push({extra: slow, type: `slow`, points: costs.ADDITIONAL});
     }
 
-    if (numLive) {
-      additionals.push({quantity: numLive, type: `heart`, points: costs.ADDITIONAL});
+    if (heart) {
+      additionals.push({extra: heart, type: `heart`, points: costs.ADDITIONAL});
     }
 
     return additionals;
   };
 
-  const calcResults = (types, lives) => {
-    console.log(types);
+  const calcResults = (result) => {
     const statistics = {};
 
-    const numFastBonus = types.filter((answer) => answer === `fast`).length;
-    const numSlowBonus = types.filter((answer) => answer === `slow`).length;
-    const wrongAnswers = types.filter((answer) => answer === `wrong`).length;
-    const correctAnswers = types.filter((answer) => answer === `correct`).length;
-    const numLiveBonus = lives || 0;
+    const fastBonus = result.filter((answer) => answer === `fast`).length;
+    const slowBonus = result.filter((answer) => answer === `slow`).length;
+    const liveBonus = result.filter((answer) => answer === `heart`).length;
+    const wrongAnswers = result.filter((answer) => answer === `wrong`).length;
+    const correctAnswers = result.filter((answer) => answer === `correct`).length;
 
     statistics.correct = wrongAnswers > 2 ? false : true;
     statistics.points = statistics.correct ?
@@ -43,19 +38,19 @@ const getCalculatedResults = (answers, lives) => {
         (statistics.points * correctAnswers) : 0;
 
     if (statistics.correct) {
-      statistics.additionals = getAdditionals(numFastBonus, numSlowBonus, numLiveBonus);
+      statistics.additionals = getAdditionals(fastBonus, slowBonus, liveBonus);
       statistics.final = statistics.total + (
-          numFastBonus + numLiveBonus - numSlowBonus) * costs.ADDITIONAL;
+          fastBonus + liveBonus - slowBonus) * costs.ADDITIONAL;
     } else {
       statistics.final = statistics.total;
     }
 
-    statistics.answers = types;
+    statistics.answers = result;
 
     return statistics;
   };
 
-  const calculatedResults = statsData.map((result) => calcResults(result.answers, result.lives));
+  const calculatedResults = results.map((result) => calcResults(result.answers));
   return calculatedResults;
 };
 
