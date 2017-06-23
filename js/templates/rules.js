@@ -4,7 +4,6 @@ import getGreeting from './greeting';
 import footer from './footer';
 import createHeader from './header/header';
 import getScreen from '../game-switcher';
-import initialStatements from '../rules-data';
 
 const createScreen = () => {
   const template = `
@@ -34,7 +33,7 @@ const createScreen = () => {
 
   const buttonHandler = (evt) => {
     evt.preventDefault();
-    getScreen(initialStatements.screenNumber, initialStatements);
+    getScreen();
   };
 
   const inputHandler = (evt) => (button.disabled = !(evt.target.value).trim());

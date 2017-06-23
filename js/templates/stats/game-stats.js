@@ -12,10 +12,10 @@ const getAnswers = (answers) => {
 
 const getExtra = (points) => {
   return points.map((point) => {
-    const total = point.extra * point.points;
+    const total = point.quantity * point.points;
     return `<tr><td></td>
       <td class="result__extra">${(extraTypes[point.type] + `:`) || ``}</td>
-      <td class="result__extra">${point.extra}&nbsp;<span class="stats__result stats__result--${point.type}"></span></td>
+      <td class="result__extra">${point.quantity}&nbsp;<span class="stats__result stats__result--${point.type}"></span></td>
       <td class="result__points">×&nbsp;${point.points}</td>
       <td class="result__total">${point.type === `slow` ? (`-` + total) : total}</td></tr>`;
   }).join(``);
