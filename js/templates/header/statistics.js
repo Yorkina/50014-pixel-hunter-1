@@ -9,7 +9,7 @@ const getLives = (lives) => {
   }).join(``);
 };
 
-const stats = ({lives, time}) =>
+const stats = (time, lives) =>
   `<h1 class="game__timer">${time}</h1>
     <div class="game__lives">
       ${getLives(lives)}

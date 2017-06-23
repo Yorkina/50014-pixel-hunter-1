@@ -12,6 +12,7 @@ export default (answers, labels) => {
   };
 
   const createOptions = (params) => {
+    console.log(params);
     return params.map((param, index) => {
       return `<div class="game__option" data-value=${param.picture.type}>
         <img src=${param.picture.src}

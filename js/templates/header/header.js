@@ -1,5 +1,6 @@
-export default (stats, state) => {
-  const showStats = stats ? stats(state) : ``;
+import statistics from './statistics';
+
+export default (time, lives) => {
 
   return `<header class="header">
     <div class="header__back">
@@ -8,6 +9,6 @@ export default (stats, state) => {
         <img src="img/logo_small.png" width="101" height="44">
       </span>
     </div>
-    ${showStats}
+    ${(time && lives) ? statistics(time, lives) : ``}
   </header>`;
 };
