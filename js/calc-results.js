@@ -26,15 +26,14 @@ const getCalculatedResults = (answers, lives) => {
     return additionals;
   };
 
-  const calcResults = (types, lives) => {
-    console.log(types);
+  const calcResults = (types, notSpentLives) => {
     const statistics = {};
 
     const numFastBonus = types.filter((answer) => answer === `fast`).length;
     const numSlowBonus = types.filter((answer) => answer === `slow`).length;
     const wrongAnswers = types.filter((answer) => answer === `wrong`).length;
     const correctAnswers = types.filter((answer) => answer === `correct`).length;
-    const numLiveBonus = lives || 0;
+    const numLiveBonus = notSpentLives || 0;
 
     statistics.correct = wrongAnswers > 2 ? false : true;
     statistics.points = statistics.correct ?

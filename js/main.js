@@ -1,4 +1,4 @@
 import addElementToPage from './add-element-to-page';
-import mainTemplate from './templates/main-template';
+import Main from './main/main';
 
-addElementToPage(mainTemplate);
+addElementToPage(new Main().view);

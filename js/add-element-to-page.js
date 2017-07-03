@@ -1,5 +1,5 @@
-export default (element) => {
+export default (view) => {
   const container = document.querySelector(`.central`);
   container.innerHTML = ``;
-  container.appendChild(element);
+  container.appendChild(view.element);
 };

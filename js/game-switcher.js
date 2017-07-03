@@ -85,7 +85,7 @@ const createTemplate = (screenFunc, game, stats) => {
       ${footer}`);
 };
 
-const game = (gameLevel = 0, correct) => {
+const game = (gameLevel, correct) => {
   stopTimer(timeout);
 
   const numberOfScreen = games[gameLevel] ?
@@ -96,7 +96,7 @@ const game = (gameLevel = 0, correct) => {
     addElementToPage(createTemplate(gameScreens[numberOfScreen],
         games[gameLevel], bonuses));
 
-    gameScreens[numberOfScreen].exportLogic(games[gameLevel], gameLevel);
+    gameScreens[numberOfScreen].exportLogic(games[gameLevel], gameLevel, restoreStatements);
     startTimer(initialStatements, gameLevel, correct);
     lives = saveLives(correct, lives);
 
